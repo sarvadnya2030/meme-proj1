@@ -35,6 +35,12 @@ A real-time pose detection application built with Python, OpenCV, and MediaPipe 
 
 ## Setup and running program
 
+First, clone the repo
+```bash
+git clone https://github.com/yourusername/mreme.git
+cd mreme
+```
+
 ```bash
 pip install -r requirements.txt
 ```
