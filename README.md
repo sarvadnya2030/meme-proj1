@@ -41,10 +41,12 @@ git clone https://github.com/yourusername/mreme.git
 cd mreme
 ```
 
+Install necessary dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
+Run program
 ```bash
 python main.py
 ```
