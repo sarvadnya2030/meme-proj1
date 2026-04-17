@@ -1,0 +1,19 @@
+services:
+  meme-mirror:
+    build: .
+    container_name: meme-mirror
+    environment:
+      - DISPLAY=${DISPLAY:-:0}
+      - MEME_MIRROR_NAME=${MEME_MIRROR_NAME:-OYO}
+      - CAMERA_INDEX=${CAMERA_INDEX:-0}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ./screenshots:/app/screenshots
+      - ./recordings:/app/recordings
+    devices:
+      - ${VIDEO_DEVICE:-/dev/video0}:${VIDEO_DEVICE:-/dev/video0}
+    group_add:
+      - video
+    privileged: true
+    stdin_open: true
+    tty: true

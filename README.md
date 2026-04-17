@@ -51,6 +51,41 @@ Run program
 python main.py
 ```
 
+## Deployment (Linux + Docker)
+
+This app uses your local webcam and desktop window, so deploy it on a Linux machine with camera and GUI access.
+
+1) Build and run with one command:
+```bash
+./deploy_linux.sh
+```
+
+2) Optional: set your intro name before starting:
+```bash
+MEME_MIRROR_NAME="OYO" ./deploy_linux.sh
+```
+
+If your webcam is not on the default device/index:
+```bash
+VIDEO_DEVICE=/dev/video1 CAMERA_INDEX=1 ./deploy_linux.sh
+```
+
+3) Stop the deployment:
+```bash
+docker compose down
+```
+
+Manual Docker run:
+```bash
+docker compose up --build
+```
+
+Notes:
+- The container maps `/dev/video0` for webcam access.
+- You can override webcam mapping with `VIDEO_DEVICE` and app camera selection with `CAMERA_INDEX`.
+- The script enables X11 access with `xhost +local:docker`.
+- Screenshots and recordings are saved to local `screenshots/` and `recordings/` folders.
+
 ## Controls
 
 | Key | Function |

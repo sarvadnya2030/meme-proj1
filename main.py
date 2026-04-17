@@ -9,6 +9,7 @@ import mediapipe as mp
 
 
 WINDOW_NAME = "Meme Mirror"
+INTRO_NAME = os.getenv("MEME_MIRROR_NAME", "YOU")
 TOUCH_THRESHOLD = 0.08
 MOUTH_OPEN_THRESHOLD = 0.5
 POINTING_OFFSET = 0.05
@@ -319,6 +320,11 @@ def show_splash_screen(meme_images):
             draw_corner_brackets(canvas, screen_width // 2 - 180, screen_height // 2 - 70,
                                  screen_width // 2 + 180, screen_height // 2 + 90,
                                  (255, 255, 255), corner_length=15, thickness=2)
+
+            owner_text = f"for {INTRO_NAME}"
+            (owner_w, _), _ = cv2.getTextSize(owner_text, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 1)
+            cv2.putText(canvas, owner_text, (screen_width // 2 - owner_w // 2, screen_height // 2 + 78),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, (180, 180, 180), 1)
 
         elif frame_index < 70:
             progress = (frame_index - 50) / 20
@@ -865,7 +871,12 @@ def main():
     meme_images = load_meme_images()
     pose_list = list(MEME_PATHS.keys())
 
-    capture = cv2.VideoCapture(0)
+    try:
+        camera_index = int(os.getenv("CAMERA_INDEX", "0"))
+    except ValueError:
+        camera_index = 0
+
+    capture = cv2.VideoCapture(camera_index)
     if not capture.isOpened():
         print("Error: Cannot open camera")
         return
@@ -876,7 +887,6 @@ def main():
         return
 
     pose_detector = create_pose_detector()
-    drawing_utils = mp.solutions.drawing_utils
     state = AppState()
 
     while capture.isOpened():
@@ -914,8 +924,7 @@ def main():
             mouth_ratio = calculate_mouth_openness(pose_results.face_landmarks)
             draw_debug_overlay(canvas, pose_results, frame_width, frame_height, mouth_ratio)
 
-        if detected_pose == "staring" and pose_results.pose_landmarks is not None:
-            draw_skeleton_overlay(canvas, pose_results, drawing_utils)
+        # Landmarks are still used for detection, but hidden from the camera view.
 
         state.pose_history.append(detected_pose)
         if len(state.pose_history) > 5:
