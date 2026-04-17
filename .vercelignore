@@ -1,0 +1,10 @@
+# Exclude desktop/python runtime files so Vercel deploys static web app only
+.venv/
+__pycache__/
+main.py
+requirements.txt
+Dockerfile
+docker-compose.yml
+deploy_linux.sh
+screenshots/
+recordings/

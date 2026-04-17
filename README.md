@@ -38,9 +38,12 @@ Deploy free on Vercel:
 1) Push this repo to GitHub.
 2) Go to Vercel and import the repository.
 3) Framework preset: `Other`.
-4) Build command: leave empty.
-5) Output directory: leave empty.
-6) Deploy.
+4) Root Directory: `./`.
+5) Build command: leave empty.
+6) Output directory: leave empty.
+7) Redeploy.
+
+If Vercel still tries Python, make sure `.vercelignore` is present in the repo root (it excludes `main.py` and `requirements.txt` from the deployment upload).
 
 After deploy, share URL like this (custom intro name):
 ```text
