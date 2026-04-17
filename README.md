@@ -18,6 +18,35 @@ A real-time pose detection application built with Python, OpenCV, and MediaPipe 
 - Face overlay onto monkey meme templates
 - Vertical mode for social media export
 
+## URL Share Version (Best For Sending To Someone)
+
+This repo now includes a browser version so someone can click a URL, allow camera access, and use Meme Mirror instantly.
+
+Files used by web deploy:
+- `index.html`
+- `app.js`
+- `styles.css`
+- `vercel.json`
+
+Run locally (quick test):
+```bash
+python -m http.server 8080
+```
+Then open `http://localhost:8080`.
+
+Deploy free on Vercel:
+1) Push this repo to GitHub.
+2) Go to Vercel and import the repository.
+3) Framework preset: `Other`.
+4) Build command: leave empty.
+5) Output directory: leave empty.
+6) Deploy.
+
+After deploy, share URL like this (custom intro name):
+```text
+https://your-app.vercel.app/?name=OYO
+```
+
 ## Supported Poses
 
 | Pose | How to Trigger |
