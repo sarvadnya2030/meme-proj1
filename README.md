@@ -39,11 +39,11 @@ Deploy free on Vercel:
 2) Go to Vercel and import the repository.
 3) Framework preset: `Other`.
 4) Root Directory: `./`.
-5) Build command: leave empty.
-6) Output directory: leave empty.
+5) Build command: `npm run build`.
+6) Output directory: `dist`.
 7) Redeploy.
 
-If Vercel still tries Python, make sure `.vercelignore` is present in the repo root (it excludes `main.py` and `requirements.txt` from the deployment upload).
+If Vercel still tries Python, keep `.vercelignore` in the repo root and redeploy after commit `a3bdf32` or newer.
 
 After deploy, share URL like this (custom intro name):
 ```text

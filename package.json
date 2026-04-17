@@ -1,0 +1,9 @@
+{
+  "name": "meme-mirror-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static web deployment for Meme Mirror",
+  "scripts": {
+    "build": "bash scripts/build-web.sh"
+  }
+}
